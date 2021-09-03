@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+										http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+										http://www.springframework.org/schema/tx
+										http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+										http://www.springframework.org/schema/aop
+										http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+										http://www.springframework.org/schema/context
+			  							http://www.springframework.org/schema/context/spring-context-4.0.xsd
+										http://www.springframework.org/schema/mvc
+			  							http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+    <!--<?xml version="1.0" encoding="UTF-8"?>-->
+    <!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+    <!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+    <!--       xmlns:context="http://www.springframework.org/schema/context"-->
+    <!--       xmlns:aop="http://www.springframework.org/schema/aop"-->
+    <!--       xmlns:tx="http://www.springframework.org/schema/tx"-->
+    <!--       xmlns:mvc="http://www.springframework.org/schema/mvc"-->
+    <!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+    <!--    https://www.springframework.org/schema/beans/spring-beans.xsd-->
+    <!--    http://www.springframework.org/schema/context-->
+    <!--    https://www.springframework.org/schema/context/spring-context.xsd-->
+    <!--    http://www.springframework.org/schema/aop-->
+    <!--    https://www.springframework.org/schema/aop/spring-aop.xsd-->
+    <!--    http://www.springframework.org/schema/tx-->
+    <!--    https://www.springframework.org/schema/tx/spring-tx.xsd-->
+    <!--    http://www.springframework.org/schema/mvc-->
+    <!--    https://www.springframework.org/schema/mvc/spring-mvc.xsd">-->
+
+
+    <context:component-scan base-package="cn.hp"></context:component-scan>
+
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">-->
+    <!--        <property name="prefix" value="/"></property>-->
+    <!--        <property name="suffix" value=".jsp"></property>-->
+    <!--    </bean>-->
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Spring_ssm_MR_Demo_Hospital_8_29?characterEncoding=utf8"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+
+
+    <!--    mybatis连接工厂-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="typeAliasesPackage" value="cn.hp.model"></property>
+        <property name="mapperLocations" value="classpath:cn/hp/dao/*.xml"></property>
+    </bean>
+
+    <!--    mybatis 映射输入数据-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.hp.dao"></property>
+    </bean>
+
+    <!--    事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <context:property-placeholder location="classpath:application.properties"></context:property-placeholder>
+
+
+    <!-- spring data redis -->
+    <!--    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">-->
+    <!--        <property name="usePool" value="true"></property>-->
+    <!--        <property name="hostName" value="${redis.host}" />-->
+    <!--        <property name="port" value="${redis.port}" />-->
+    <!--        &lt;!&ndash;  <property name="password" value=""/> &ndash;&gt;-->
+    <!--        <property name="timeout" value="${redis.timeout}" />-->
+    <!--        <property name="database" value="${redis.default.db}"></property>-->
+    <!--        <constructor-arg   ref="jedisPoolConfig" />-->
+    <!--    </bean>-->
+
+    <!-- 连接池参数配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxActive}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.maxWait}" />
+    </bean>
+
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+        <constructor-arg name="host" value="${redis.host}"/>
+        <constructor-arg name="port" value="${redis.port}"/>
+    </bean>
+
+
+</beans>
