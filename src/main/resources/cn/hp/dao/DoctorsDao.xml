@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hp.dao.DoctorsDao">
+
+    <!-- resultType   查出来的结果类型   使用类的全部路径
+          parameterType 参数类型-->
+
+    <select id="getCount" resultType="int">
+        select count(*) from doctors
+    </select>
+
+
+    <select id="DoctorsAll" resultType="Doctors">
+        select * from doctors where 1=1
+        <if test="name!=null and name!=''">and name like concat('%',concat (#{name},'%'))</if>
+        limit #{pageCode}, #{pageSize}
+    </select>
+
+    <delete id="DoctorsDeleteById" parameterType="int">
+        delete  from doctors where id=#{id}
+    </delete>
+
+    <update id="DoctorsUpdate" parameterType="Doctors">
+        update doctors set name=#{name},age=#{age},phone=#{phone},email=#{email} where id=#{id};
+    </update>
+
+
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hp.dao.MedicineDao">
+    <select id="getCount" resultType="int">
+        select  count(*) from medicine
+    </select>
+    <!-- 分页查询-->
+    <select id="medicineAll" resultType="Medicine">
+        select *  from medicine where  1=1
+        <if test="name!=null and name!=''">
+            and name like concat('%',concat(#{name},'%'))
+        </if>
+        <if test="major!=null and major!='' ">
+            and   major=#{major}
+        </if>
+        limit #{pageCode}, #{pageSize}
+    </select>
+
+    <insert id="add" parameterType="Medicine">
+        insert  into  medicine values (null,#{number},#{name},#{price},#{address},#{status},#{major},#{matter})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete  from medicine  where  id=#{id}
+    </delete>
+
+    <update id="medicineUpdate" parameterType="Medicine">
+        update medicine set number=#{number}, name=#{name},price=#{price},address=#{address},status=#{status},major=#{major},matter=#{matter} where id=#{id};
+    </update>
+</mapper>
