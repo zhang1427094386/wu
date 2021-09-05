@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+// 患者
 public interface PatientsDao {
 
     /**

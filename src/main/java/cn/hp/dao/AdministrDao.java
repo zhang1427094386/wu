@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+//科室
 public interface AdministrDao {
 
     //分页查询
@@ -17,4 +18,6 @@ public interface AdministrDao {
     public  int delete(int id);
 
     public int administrUpdate(Administr str);
+
+
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+// 药物表
 public interface MedicineDao {
 
     //分页查询
