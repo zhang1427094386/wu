@@ -30,6 +30,34 @@
         update patients set name=#{name},age=#{age},phone=#{phone},email=#{email} where id=#{id};
     </update>
 
+    <insert id="add" parameterType="Patients">
+        insert into patients values (null,#{account},#{password},#{name},#{sex},#{age},#{idcard},#{phone},#{email})
+    </insert>
+
+
+    <!--    患者登录-->
+    <select id="selectAcountAndPassword" resultType="Patients">
+        select  * from patients where account=#{account} and password=#{password}
+    </select>
+
+
+    <!--    分页查询-->
+    <select id="patientsAll" resultType="Patients">
+         select * from patients limit #{pageCode},#{pageSize}
+    </select>
+
+
+<!--    查询有无手机号-->
+    <select id="findByPhone" resultType="Patients">
+        select * from patients where phone=#{phone}
+    </select>
+    
+    <insert id="pat_add" parameterType="Patients">
+        insert into patients(phone) values (#{phone})
+    </insert>
+
+
+
 
 
 

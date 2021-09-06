@@ -3,7 +3,7 @@ package cn.hp.model;
 // 医生
 public class Doctors {
     private int id;
-    private String acount;
+    private String account;
     private String password;
     private String name;
     private String administr;
@@ -13,9 +13,9 @@ public class Doctors {
     private String phone;
     private String email;
 
-    public Doctors(int id, String acount, String password, String name, String administr, String sex, String age, String idcard, String phone, String email) {
+    public Doctors(int id, String account, String password, String name, String administr, String sex, String age, String idcard, String phone, String email) {
         this.id = id;
-        this.acount = acount;
+        this.account = account;
         this.password = password;
         this.name = name;
         this.administr = administr;
@@ -29,11 +29,19 @@ public class Doctors {
     public Doctors() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Doctors{" +
                 "id=" + id +
-                ", acount='" + acount + '\'' +
+                ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", administr='" + administr + '\'' +
@@ -43,22 +51,6 @@ public class Doctors {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAcount() {
-        return acount;
-    }
-
-    public void setAcount(String acount) {
-        this.acount = acount;
     }
 
     public String getPassword() {
@@ -123,5 +115,13 @@ public class Doctors {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

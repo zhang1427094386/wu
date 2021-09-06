@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-// 医生
 public interface DoctorsDao {
 
     /**
@@ -39,6 +38,24 @@ public interface DoctorsDao {
 
     //搜索
     public Doctors findByName(String name);
-    public int  add(Doctors c);
+
+
+    /**
+     * 添加
+     * @param doctors
+     * @return
+     */
+    public  int add(Doctors doctors);
+
+    /**
+     *   医生登录
+     * @param account
+     * @param password
+     * @return
+     */
+    public Doctors doctorsLogin(@Param("account") String account,
+                                @Param("password") String password);
+
+
 
 }

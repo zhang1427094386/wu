@@ -19,7 +19,7 @@ public class DoctorsService {
         return doctorsDao.getCount();
     }
 
-    public List<Doctors> DoctorsAll(String name,int pageSize,int pageCode){
+    public List<Doctors> DoctorsAll(String name, int pageSize, int pageCode){
         return doctorsDao.DoctorsAll(name,pageSize,pageCode);
     }
 
@@ -31,5 +31,17 @@ public class DoctorsService {
         return doctorsDao.DoctorsUpdate(str);
     }
 
+    public  int add(Doctors doctors){
+        return doctorsDao.add(doctors);
+    }
 
+    /**
+     * 医生登陆
+     * @param account
+     * @param password
+     * @return
+     */
+    public Doctors doctorsLogin(String account, String password){
+        return doctorsDao.doctorsLogin(account,password);
+    }
 }

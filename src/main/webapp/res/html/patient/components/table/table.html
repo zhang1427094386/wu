@@ -1,0 +1,80 @@
+<div class="kit-table">
+    <form class="layui-form" lay-filter="kit-search-form">
+        <div class="kit-table-header">
+            <div class="kit-search-btns">
+                <a class="layui-btn layui-btn-small" href="javascript:;">新增</a>
+                <a class="layui-btn layui-btn-small layui-btn-normal" href="javascript:;">新增</a>
+                <a class="layui-btn layui-btn-small layui-btn-warm" href="javascript:;">新增</a>
+                <a class="layui-btn layui-btn-small layui-btn-danger" href="javascript:;">新增</a>
+            </div>
+            <div class="kit-search-inputs">
+                <div class="kit-search-keyword">
+                    <input class="layui-input" name="keyword" placeholder="搜索关键字.." type="text" />
+                    <button lay-filter="search" lay-submit><i class="layui-icon">&#xe615;</i></button>
+                </div>
+                <div class="kit-search-more" id="kit-search-more">更多筛选<i class="layui-icon">&#xe61a;</i></div>
+            </div>
+        </div>
+        <div class="kit-search-mored layui-anim layui-anim-upbit">
+            <div class="kit-search-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">输入框</label>
+                    <div class="layui-input-block">
+                        <input autocomplete="off" class="layui-input" name="title" placeholder="请输入标题" type="text">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">验证手机</label>
+                        <div class="layui-input-inline">
+                            <input autocomplete="off" class="layui-input" name="phone" type="tel">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">验证邮箱</label>
+                        <div class="layui-input-inline">
+                            <input autocomplete="off" class="layui-input" name="email" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">范围</label>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input autocomplete="off" class="layui-input" name="price_min" placeholder="￥" type="text">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 100px;">
+                            <input autocomplete="off" class="layui-input" name="price_max" placeholder="￥" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单行选择框</label>
+                    <div class="layui-input-block">
+                        <select lay-filter="aihao" name="interest">
+                            <option value=""></option>
+                            <option value="0">写作</option>
+                            <option selected="" value="1">阅读</option>
+                            <option value="2">游戏</option>
+                            <option value="3">音乐</option>
+                            <option value="4">旅行</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="kit-search-footer">
+                <button class="layui-btn layui-btn-small layui-btn-primary kit-btn" type="reset">重置</button>
+                <button class="layui-btn layui-btn-small kit-btn" lay-filter="search" lay-submit>确定</button>
+            </div>
+        </div>
+    </form>
+    <div class="kit-table-body">
+        <table id="demo" lay-filter="demo"></table>
+        <script id="barDemo" type="text/html">
+            <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+        </script>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>添加科室页面</title>
+    <link href="/res/js/layui/css/layui.css" rel="stylesheet" /><!-- 引入layui的样式 -->
+    <script charset="utf-8" src="/res/js/layui/layui.js"></script>
+    <script charset="UTF-8" src="js/jquery-1.8.3.js"></script>
+
+</head>
+<body>
+
+
+<form action="#" class="layui-form layui-form-pane" id="form1" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室名字</label>
+        <div class="layui-input-block">
+            <input class="layui-input" name="name"  type="text"/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="btnAdd" lay-submit value="提交">提交</button>
+        </div>
+    </div>
+    <script>
+        layui.use(['form','layer'],function () {
+            var form=layui.form;
+            var $=layui.jquery;
+            var layer=layui.layer;
+            var index=parent.layer.getFrameIndex(window.name);
+            form.on('submit(btnAdd)',function (data) {
+                $.ajax({
+                    url:"../../../adm_add",
+                    type: "post",
+                    data:$("#form1").serialize(),
+                    dataType:"JSON",
+                    success:function (data) {
+                        parent.layer.close(index);//关闭当前页
+                    }
+                });
+            });
+        });
+
+    </script>
+</form>
+</body>
+</html>

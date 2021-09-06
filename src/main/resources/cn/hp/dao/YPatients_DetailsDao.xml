@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hp.dao.YPatients_DetailsDao">
+
+    <select id="getCount" resultType="int">
+        select count(*) from patients
+    </select>
+
+
+
+    <select id="findYAll" resultType="Patients">
+        select * from patients where patients_state=1
+        <if test="name!=null and name!=''">
+            and name like concat('%',concat(#{name},'%'))
+        </if>
+        <if test="disease!=null and disease!=''">
+            and disease like concat('%',concat(#{disease},'%'))
+        </if>
+        limit #{pageCode}, #{pageSize}
+    </select>
+
+
+
+</mapper>

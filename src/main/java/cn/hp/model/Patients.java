@@ -3,17 +3,22 @@ package cn.hp.model;
 
 // 患者
 public class Patients {
-private int id;
-private String account;
-private String password;
-private String name;
-private String sex;
-private String age;
-private String idcard;
-private String phone;
-private String email;
-
-    public Patients(int id, String account, String password, String name, String sex, String age, String idcard, String phone, String email) {
+    private int id;
+    private String account;
+    private String password;
+    private String name;
+    private String sex;
+    private String age;
+    private String idcard;
+    private String phone;
+    private String email;
+    private String disease;
+    private String appointment_time;
+    private String time;
+    private String doctor;
+    private String state;
+    private int patients_state;
+    public Patients(int id, String account, String password, String name, String sex, String age, String idcard, String phone, String email, String disease, String appointment_time, String time, String doctor, String state, int patients_state) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -23,28 +28,39 @@ private String email;
         this.idcard = idcard;
         this.phone = phone;
         this.email = email;
+        this.disease = disease;
+        this.appointment_time = appointment_time;
+        this.time = time;
+        this.doctor = doctor;
+        this.state = state;
+        this.patients_state = patients_state;
     }
 
-    public Patients() {
-    }
-
-    @Override
-    public String toString() {
-        return "Patients{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age='" + age + '\'' +
-                ", idcard='" + idcard + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public Patients(String phone) {
+        this.phone = phone;
     }
 
     public int getId() {
         return id;
+    }
+
+    public Patients(String account, String password, String name, String sex, String age, String idcard, String phone, String email, String disease, String appointment_time, String time, String doctor, String state) {
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.idcard = idcard;
+        this.phone = phone;
+        this.email = email;
+        this.disease = disease;
+        this.appointment_time = appointment_time;
+        this.time = time;
+        this.doctor = doctor;
+        this.state = state;
+    }
+
+    public Patients() {
     }
 
     public void setId(int id) {
@@ -113,5 +129,73 @@ private String email;
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getPatients_state() {
+        return patients_state;
+    }
+
+    public void setPatients_state(int patients_state) {
+        this.patients_state = patients_state;
+    }
+
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public String getAppointment_time() {
+        return appointment_time;
+    }
+
+    public void setAppointment_time(String appointment_time) {
+        this.appointment_time = appointment_time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Patients{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age='" + age + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", disease='" + disease + '\'' +
+                ", appointment_time='" + appointment_time + '\'' +
+                ", time='" + time + '\'' +
+                ", doctor='" + doctor + '\'' +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

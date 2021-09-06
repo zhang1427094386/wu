@@ -1,12 +1,10 @@
 package cn.hp.dao;
 
-import cn.hp.model.Doctors;
 import cn.hp.model.Patients;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-// 患者
 public interface PatientsDao {
 
     /**
@@ -37,5 +35,37 @@ public interface PatientsDao {
      * @return
      */
     public int PatientsUpdate(Patients str);
+
+    /**
+     * 添加
+     * @param patients
+     * @return
+     */
+    public  int add(Patients patients);
+
+
+//    患者登录
+    public Patients selectAcountAndPassword(@Param("account") String account, @Param("password") String password);
+
+
+    //分页查询
+    public List<Patients>patientsAll(@Param("pageSize") int pageSize, @Param("pageCode") int pageCode);
+
+
+    /** 短信登录
+     * 查询有无手机号
+     *
+     * @param phone
+     * @return
+     */
+    public Patients findByPhone(String phone);
+
+    /**
+     * 添加对象   实际上只是手机号
+     *
+     * @param p
+     * @return
+     */
+    public int pat_add(Patients p);
 
 }

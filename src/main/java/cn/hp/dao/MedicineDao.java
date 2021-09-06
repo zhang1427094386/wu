@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-// 药物表
 public interface MedicineDao {
 
     //分页查询
@@ -19,4 +18,7 @@ public interface MedicineDao {
     public  int delete(int id);
 
     public int medicineUpdate(Medicine str);
+
+
+
 }

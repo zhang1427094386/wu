@@ -27,6 +27,15 @@
         update doctors set name=#{name},age=#{age},phone=#{phone},email=#{email} where id=#{id};
     </update>
 
+    <insert id="add" parameterType="Doctors">
+        insert into doctors values (null,#{account},#{password},#{name},#{administr},#{sex},#{age},#{idcard},#{phone},#{email})
+    </insert>
+
+    <!--医生登陆-->
+    <select id="doctorsLogin" resultType="Doctors">
+        select * from doctors where account=#{account} and password=#{password}
+    </select>
+
 
 
 </mapper>

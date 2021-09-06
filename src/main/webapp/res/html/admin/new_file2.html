@@ -1,28 +1,309 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link href="plugins/layui/css/layui.css" rel="stylesheet" /><!-- 引入layui的样式 -->
-    <script charset="utf-8" src="plugins/layui/layui.js"></script><!-- 引入layui的js -->
+    <link href="css2/element.css" rel="stylesheet">
+<!--    <link rel="stylesheet" href="../../css2/base.css">-->
+    <link href="css2/base.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <h1>
-        欢迎使用医疗后台管理系统
-    </h1>
+<el-main>
+    <el-row :gutter="10" style="padding: 5px 0">
+
+        <el-row :gutter="10" style="padding: 5px 0">
+            <el-col :span="12">
+                <el-card>
+                    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                    <div id="main" style="width: 600px;height:400px; margin: 0 auto"></div>
+                </el-card>
+            </el-col>
+            <el-col :span="12">
+                <el-card>
+                    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                    <div id="map" style="width: 600px;height:400px; margin: 0 auto"></div>
+                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-row style="padding: 5px 0">
+            <el-col :span="24">
+                <el-card>
+                    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                    <div id="polyline" style="width: 100%;height:400px; margin: 0 auto"></div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </el-row>
+</el-main>
+
+</el-container>
+</el-container>
 </div>
-<!--<ul class="layui-timeline">-->
-<!--    <li class="layui-timeline-item">-->
-<!--        <i class="layui-timeline-axis layui-icon">&#xe63f;</i>-->
-<!--        <div class="layui-timeline-content">-->
 
-<!--           -->
-<!--        </div>-->
-<!--    </li>-->
+<script src="js2/echarts.min.js"></script>
+<script src="js2/china.js"></script>
+<script src="js2/jquery.min.js"></script>
+<script src="js2/vue.min.js"></script>
+<script src="js2/element.js"></script>
+<script src="js2/base.js"></script>
 
 
-<!--</ul>-->
+<script>
+    let pieOption = {
 
+        title: {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 1048, name: '搜索引擎'},
+                    {value: 735, name: '直接访问'},
+                    {value: 580, name: '邮件营销'},
+                    {value: 484, name: '联盟广告'},
+                    {value: 300, name: '视频广告'}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    let mapOption = {
+        //  XXXXXXXXX低于分布图
+        title: {
+            text: '用户地域分布',
+            subtext: '',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['用户']
+        },
+        visualMap: {
+            min: 0,
+            max: 2500,
+            top: "bottom",
+            left: 'left',
+            text: ['高', '低'],
+            calculable: true
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'left',
+            top: 'center',
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        series: [{
+            name: '用户',
+            type: 'map',
+            mapType: 'china',
+            roam: false,
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data: [
+                {name: '北京市', value: Math.round(Math.random() * 1000)},
+                {name: '天津省', value: Math.round(Math.random() * 1000)},
+                {name: '上海市', value: Math.round(Math.random() * 1000)},
+                {name: '重庆市', value: Math.round(Math.random() * 1000)},
+                {name: '河北省', value: Math.round(Math.random() * 1000)},
+                {name: '河南省', value: Math.round(Math.random() * 1000)},
+                {name: '云南省', value: Math.round(Math.random() * 1000)},
+                {name: '辽宁省', value: Math.round(Math.random() * 1000)},
+                {name: '黑龙江省', value: Math.round(Math.random() * 1000)},
+                {name: '湖南省', value: Math.round(Math.random() * 1000)},
+                {name: '安徽省', value: Math.round(Math.random() * 1000)},
+                {name: '山东省', value: Math.round(Math.random() * 1000)},
+                {name: '新疆', value: Math.round(Math.random() * 1000)},
+                {name: '江苏省', value: Math.round(Math.random() * 1000)},
+                {name: '浙江省', value: Math.round(Math.random() * 1000)},
+                {name: '江西省', value: Math.round(Math.random() * 1000)},
+                {name: '湖北省', value: Math.round(Math.random() * 1000)},
+                {name: '广西省', value: Math.round(Math.random() * 1000)},
+                {name: '甘肃省', value: Math.round(Math.random() * 1000)},
+                {name: '内蒙古', value: Math.round(Math.random() * 1000)},
+                {name: '陕西省', value: Math.round(Math.random() * 1000)},
+                {name: '吉林省', value: Math.round(Math.random() * 1000)},
+                {name: '福建省', value: Math.round(Math.random() * 1000)},
+                {name: '贵州省', value: Math.round(Math.random() * 1000)},
+                {name: '青海省', value: Math.round(Math.random() * 1000)},
+                {name: '西藏', value: Math.round(Math.random() * 1000)},
+                {name: '四川省', value: Math.round(Math.random() * 1000)},
+                {name: '宁夏', value: Math.round(Math.random() * 1000)},
+                {name: '海南省', value: Math.round(Math.random() * 1000)},
+                {name: '台湾省', value: Math.round(Math.random() * 1000)},
+                {name: '澳门', value: Math.round(Math.random() * 1000)},
+                {name: '香港', value: Math.round(Math.random() * 1000)},
+            ]
+        }]
+    };
+    //指定折线图的配置项和数据
+    let polylineOption = {
+        //标题
+        //  XXXXXXXXXX 曲线图
+
+        title: {
+            text: '未来一周气温变化',
+            subtext: '纯属虚构'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['最高气温', '最低气温']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} °C'
+            }
+        },
+        series: [
+            {
+                name: '最高气温',
+                type: 'line',
+                data: [10, 11, 13, 11, 12, 12, 9],
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name: '最低气温',
+                type: 'line',
+                data: [1, -2, 2, 5, 3, 2, 0],
+                markPoint: {
+                    data: [
+                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'},
+                        [{
+                            symbol: 'none',
+                            x: '90%',
+                            yAxis: 'max'
+                        }, {
+                            symbol: 'circle',
+                            label: {
+                                position: 'start',
+                                formatter: '最大值'
+                            },
+                            type: 'max',
+                            name: '最高点'
+                        }]
+                    ]
+                }
+            }
+        ]
+    };
+
+    new Vue({
+        el: "#wrapper",
+        data: {
+            user: {},
+            tableData: [],
+            pageNum: 1,
+            pageSize: 10,
+            total: 0,
+            dialogFormVisible: false,
+            entity: {},
+            isCollapse: false
+        },
+        created() {
+            //获取登录成功用户对象给Vue的user对象赋值
+            //        登陆成功之后 因为在login把登录成功信息存到session仓库里了  getItem：取出来user 把它取出来 转成json格式 取出来赋值给user对象
+            this.user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : {};
+            this.$nextTick(() => {
+                this.loadEcharts();
+            })
+        },
+        methods: {
+            loadEcharts() {
+                // 基于准备好的dom，初始化echarts实例
+                let myChart = echarts.init(document.getElementById('main'));
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(pieOption);
+
+                // 基于准备好的dom，初始化echarts实例
+                let mapChart = echarts.init(document.getElementById('map'));
+                // 使用刚指定的配置项和数据显示图表。
+                mapChart.setOption(mapOption);
+
+                let polylineChart = echarts.init(document.getElementById('polyline'));
+                // 使用刚指定的配置项和数据显示图表。
+                polylineChart.setOption(polylineOption);
+            },
+            handleCollapse() {
+                this.isCollapse = !this.isCollapse;
+            },
+            logout() {
+                //     XXXXXXXXXXXX
+                $.get("/api/user/logout");
+                sessionStorage.removeItem("user");
+                location.href="login.html";
+            }
+        }
+    })
+</script>
 </body>
 </html>

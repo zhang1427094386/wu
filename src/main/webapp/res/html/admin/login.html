@@ -31,15 +31,12 @@
 		$(function () {
 			$("#login").click(function () {
 				$.ajax({
-					// url: "/res/html/admin/adminLogin",
 					url: "../../../adminLogin",
 					dataTaty:"JSON",
 					data:$("#form1").serialize(),
 					success:function (data) {
 						if (data.code==0){
-							// window.location.href="/res/html/admin/index.html"
-							window.location.href="/res/html/admin/home.html"
-							// window.location.href="index.jsp"
+							window.location.href="/res/html/admin/index.html"
 						}else {
 							alert(data.msg);
 						}

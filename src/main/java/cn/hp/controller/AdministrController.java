@@ -17,7 +17,7 @@ public class AdministrController {
     @Autowired
     private AdministrService administrService;
 
-    @RequestMapping("/selectAll")
+    @RequestMapping("/adm_selectAll")
 
     public Map selectAll(int page, int limit){
 //        个数
@@ -33,7 +33,7 @@ public class AdministrController {
 
     }
 
-    @RequestMapping("/str_add")
+    @RequestMapping("/adm_add")
     public  Map add(Administr administr){
         Map map = new HashMap();
         int i =  administrService.add(administr);
@@ -49,7 +49,7 @@ public class AdministrController {
         System.out.println(i);
         return map;
     }
-    @RequestMapping("/deleteById")
+    @RequestMapping("/adm_deleteById")
     public  Map   delete(int id) {
         System.out.println(id);
         Map map = new HashMap();
@@ -68,7 +68,7 @@ public class AdministrController {
 
 
 
-    @RequestMapping("/administrUpdate")
+    @RequestMapping("/adm_Update")
     public Map cus_update(String str) {
         System.out.println(str);
         Administr C= JSONObject.parseObject(str, Administr.class);
